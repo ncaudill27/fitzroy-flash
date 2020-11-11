@@ -46,11 +46,11 @@ function DrinkForm() {
   
   const [name, setName] = useState('');
 
-  const [ingredients, setIngredients] = useState([{name: '', amount: 1}]);
+  const [ingredients, setIngredients] = useState([{name: '', amount: '1'}]);
 
   const addIngredient = e => {
     e.preventDefault();
-    setIngredients([...ingredients, {name: '', amount: 1}]);
+    setIngredients([...ingredients, {name: '', amount: '1'}]);
   }
 
   const [createItem, { loading, data }] = useMutation(CREATE_DRINK, {
@@ -69,9 +69,10 @@ function DrinkForm() {
           create: ingredients
         }
     }
-    console.log(variables);
+
     createItem({variables});
-    console.log(data);
+    setName('');
+    setIngredients([{name: '', amount: '1'}]);
   }
 
   const handleChange = e => {

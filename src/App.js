@@ -10,7 +10,7 @@ function App() {
   
   return (
       <ApolloProvider client={client}>
-        <DrinkForm />
+        {/* <DrinkForm /> */}
           {/* <div className="form-group">
             <label htmlFor="category">Category</label>
             <select id="category" ref={categoryEl}>

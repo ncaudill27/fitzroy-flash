@@ -26,9 +26,7 @@ const DRINKS_QUERY = gql`
 
     useEffect( () => {
       if ( data && !loading) setDrinks(data.allDrinks.data);
-    }, [data, loading])
-
-    if (drinks) console.log(drinks);
+    }, [data, loading]);
     
     if (loading) {
       return 'loading...'
