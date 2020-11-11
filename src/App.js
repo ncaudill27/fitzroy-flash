@@ -3,7 +3,7 @@ import { ApolloProvider } from '@apollo/client';
 import { client } from './client';
 import './App.css'
 import DrinkList from './DrinkList';
-import DrinkForm from './DrinkForm';
+// import DrinkForm from './DrinkForm';
 
 
 function App() {
