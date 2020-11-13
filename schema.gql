@@ -1,12 +1,22 @@
 type Drink {
   name: String!
+  category: String!
   ingredients: [Ingredient!] @relation
+  build: [Step!] @relation
+  garnish: String!
+  glassware: String!
 }
 
 type Ingredient {
   name: String!
   amount: String!
+  unit: String!
+  base: Boolean
   drink: Drink!
+}
+
+type Step {
+  step: String!
 }
 
 type Query {

@@ -1,5 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react'
 
+function DrinkIngredients({ingredients}) {
+  return (
+    <div className="flashcard-options">
+      {ingredients.data.map( ({name, amount, unit, base}) => {
+        return <div className="flashcard-option" key={name}>{name}: {amount} {unit}</div>
+      })}
+    </div>
+  );
+}
+
+function BuildSteps({steps}) {
+  return (
+    <div className="flashcard-options">
+      {steps.data.map( ({step}, idx) => {
+        return <div className="flashcard-option" key={idx}>{step}</div>
+      })}
+    </div>
+  );
+}
+
 export default function Flashcard({ flashcard }) {
   const [flip, setFlip] = useState(false)
   const [height, setHeight] = useState('initial')
@@ -29,11 +49,8 @@ export default function Flashcard({ flashcard }) {
         {flashcard.name}
       </div>
       <div className="back" ref={backEl}>
-        <div className="flashcard-options">
-            {flashcard.ingredients.data.map(ingredient => {
-              return <div className="flashcard-option" key={ingredient.name}>{ingredient.name}: {ingredient.amount} oz</div>
-            })}
-          </div>
+        <DrinkIngredients ingredients={flashcard.ingredients} />
+        <BuildSteps steps={flashcard.build} />
       </div>
     </div>
   )
