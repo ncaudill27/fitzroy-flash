@@ -3,24 +3,42 @@ import React, { useState, useEffect, useRef } from 'react'
 function DrinkIngredients({ingredients}) {
   return (
     <div className="flashcard-options">
-      {ingredients.data.map( ({name, amount, unit, base}) => {
+      {ingredients.data.map( ({name, amount, unit}) => {
         return <div className="flashcard-option" key={name}>{name}: {amount} {unit}</div>
       })}
     </div>
   );
 }
 
-function BuildSteps({steps}) {
+function GarnishStep({garnish}) {
+
+  if (!garnish) return null;
+  return (
+    <div className="flashcard-option">Garnish with {garnish}.</div>
+  )
+}
+
+function BuildSteps({steps, garnish}) {
   return (
     <div className="flashcard-options">
       {steps.data.map( ({step}, idx) => {
         return <div className="flashcard-option" key={idx}>{step}</div>
       })}
+      <GarnishStep garnish={garnish} />
     </div>
   );
 }
 
-export default function Flashcard({ flashcard }) {
+export default function Flashcard({
+  flashcard: {
+    name,
+    category,
+    ingredients,
+    build,
+    garnish,
+    glassware
+  }
+}) {
   const [flip, setFlip] = useState(false)
   const [height, setHeight] = useState('initial')
 
@@ -33,7 +51,7 @@ export default function Flashcard({ flashcard }) {
     setHeight(Math.max(frontHeight, backHeight, 100))
   }
 
-  useEffect(setMaxHeight, [flashcard.name, flashcard.ingredients])
+  useEffect(setMaxHeight, [name, ingredients])
   useEffect(() => {
     window.addEventListener('resize', setMaxHeight)
     return () => window.removeEventListener('resize', setMaxHeight)
@@ -46,11 +64,11 @@ export default function Flashcard({ flashcard }) {
       onClick={() => setFlip(!flip)}
     >
       <div className="front" ref={frontEl}>
-        {flashcard.name}
+        {name}
       </div>
       <div className="back" ref={backEl}>
-        <DrinkIngredients ingredients={flashcard.ingredients} />
-        <BuildSteps steps={flashcard.build} />
+        <DrinkIngredients ingredients={ingredients} />
+        <BuildSteps steps={build} garnish={garnish} />
       </div>
     </div>
   )

@@ -17,6 +17,7 @@ type Ingredient {
 
 type Step {
   step: String!
+  drink: Drink!
 }
 
 type Query {
