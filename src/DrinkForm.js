@@ -126,7 +126,7 @@ function DrinkForm() {
     }
   }
 
-  const [createItem, { loading, data }] = useMutation(CREATE_DRINK, {
+  const [createItem, { loading }] = useMutation(CREATE_DRINK, {
     refetchQueries: [{ query: DRINKS_QUERY }],
     onCompleted: () => {
       setName('');

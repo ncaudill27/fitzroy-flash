@@ -37,7 +37,7 @@ const DRINKS_QUERY = gql`
       console.log(data, loading)
       console.log('Err: ', error)
       if ( data && !loading) setDrinks(data.allDrinks.data);
-    }, [data, loading]);
+    }, [data, loading, error]);
     
     if (loading) {
       return 'loading...'
