@@ -1,30 +1,30 @@
 import React, { useState, useEffect, useRef } from 'react'
 
-function DrinkIngredients({ingredients}) {
+function DrinkIngredients({ingredients, garnish}) {
   return (
     <div className="flashcard-options">
       {ingredients.data.map( ({name, amount, unit}) => {
-        return <div className="flashcard-option" key={name}>{name}: {amount} {unit}</div>
+        return <p className="flashcard-option" key={name}><b>{name}:</b> {amount} {unit}</p>
       })}
+      <Garnish garnish={garnish} />
     </div>
   );
 }
 
-function GarnishStep({garnish}) {
+function Garnish({garnish}) {
 
   if (!garnish) return null;
   return (
-    <div className="flashcard-option">Garnish with {garnish}.</div>
+    <div className="flashcard-option"><b>Garnish:</b> {garnish}</div>
   )
 }
 
-function BuildSteps({steps, garnish}) {
+function BuildSteps({steps}) {
   return (
-    <div className="flashcard-options">
+    <div className="flashcard-options build">
       {steps.data.map( ({step}, idx) => {
         return <div className="flashcard-option" key={idx}>{step}</div>
       })}
-      <GarnishStep garnish={garnish} />
     </div>
   );
 }
@@ -67,8 +67,8 @@ export default function Flashcard({
         {name}
       </div>
       <div className="back" ref={backEl}>
-        <DrinkIngredients ingredients={ingredients} />
-        <BuildSteps steps={build} garnish={garnish} />
+        <DrinkIngredients ingredients={ingredients} garnish={garnish} />
+        <BuildSteps steps={build} />
       </div>
     </div>
   )

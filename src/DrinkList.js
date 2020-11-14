@@ -9,10 +9,19 @@ const DRINKS_QUERY = gql`
       allDrinks {
         data {
           name
+          category
+          garnish
+          glassware
           ingredients {
             data {
               name
               amount
+              unit
+            }
+          }
+          build {
+            data {
+              step
             }
           }
         }
@@ -22,9 +31,11 @@ const DRINKS_QUERY = gql`
 
   function DrinkList() {
     const [drinks, setDrinks] = useState([]);
-    const { data, loading } = useQuery(DRINKS_QUERY);
+    const { data, loading, error } = useQuery(DRINKS_QUERY);
 
     useEffect( () => {
+      console.log(data, loading)
+      console.log('Err: ', error)
       if ( data && !loading) setDrinks(data.allDrinks.data);
     }, [data, loading]);
     
