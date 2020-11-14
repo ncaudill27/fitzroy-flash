@@ -1,9 +1,12 @@
 import React from 'react';
 
-function IngredientsInput({ingredients, handleChange}) {
+function IngredientsInput({ingredients, handleChange, showIngredients}) {
+
+  if (!showIngredients) return null;
   return ingredients.map( (ingredient, idx) => {
     const nameId = `name-${idx}`;
     const amountId = `amount-${idx}`;
+    const unitId = `unit-${idx}`;
 
     return (
       <div key={idx}>
@@ -18,8 +21,6 @@ function IngredientsInput({ingredients, handleChange}) {
             className='name'
             onChange={handleChange}
           />
-        </div>
-        <div className='form-group'>
           <label htmlFor={amountId}>Amount</label>
           <input
             type='number'
@@ -32,6 +33,16 @@ function IngredientsInput({ingredients, handleChange}) {
             min='0.25'
             onChange={handleChange}
           />
+          <label htmlFor={unitId}>Unit</label>
+          <input
+            type='text'
+            name={unitId}
+            data-id={idx}
+            id={unitId}
+            value={ingredient.unit}
+            className='unit'
+            onChange={handleChange}
+          />          
         </div>
       </div>
     );

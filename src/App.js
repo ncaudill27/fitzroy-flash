@@ -3,14 +3,14 @@ import { ApolloProvider } from '@apollo/client';
 import { client } from './client';
 import './App.css'
 import DrinkList from './DrinkList';
-// import DrinkForm from './DrinkForm';
+import DrinkForm from './DrinkForm';
 
 
 function App() {
   
   return (
       <ApolloProvider client={client}>
-        {/* <DrinkForm /> */}
+        <DrinkForm />
           {/* <div className="form-group">
             <label htmlFor="category">Category</label>
             <select id="category" ref={categoryEl}>

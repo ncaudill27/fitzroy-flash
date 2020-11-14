@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import gql from 'graphql-tag';
 import { useMutation } from '@apollo/react-hooks';
-import IngredientsInput from './IngredientsInput';
+import IngredientsForm from './IngredientsForm';
 
 const CREATE_DRINK = gql`
   mutation CreateDrink(
@@ -43,14 +43,20 @@ function DrinkForm() {
 
   const [showForm, setShowForm] = useState(false);
   const toggleForm = () => setShowForm( prev => !prev );
+
+  const [showIngredients, setShowIngredients] = useState(false);
+  const toggleIngredients = e => {
+    e.preventDefault();
+    setShowIngredients( prev => !prev );
+  }
   
   const [name, setName] = useState('');
 
-  const [ingredients, setIngredients] = useState([{name: '', amount: '1'}]);
+  const [ingredients, setIngredients] = useState([{name: '', amount: '1', unit: ''}]);
 
   const addIngredient = e => {
     e.preventDefault();
-    setIngredients([...ingredients, {name: '', amount: '1'}]);
+    setIngredients([...ingredients, {name: '', amount: '1', unit: ''}]);
   }
 
   const [createItem, { loading, data }] = useMutation(CREATE_DRINK, {
@@ -70,13 +76,14 @@ function DrinkForm() {
         }
     }
 
-    createItem({variables});
+    // createItem({variables});
+    console.log(variables)
     setName('');
-    setIngredients([{name: '', amount: '1'}]);
+    setIngredients([{name: '', amount: '1', unit: ''}]);
   }
 
   const handleChange = e => {
-    if (['name', 'amount'].includes(e.target.className) ) {
+    if (['name', 'amount', 'unit'].includes(e.target.className) ) {
       const ingredientsCopy = [...ingredients];
       ingredientsCopy[e.target.dataset.id][e.target.className] = e.target.value;
       setIngredients(ingredientsCopy);
@@ -87,18 +94,26 @@ function DrinkForm() {
 
   if (showForm) {
     return (
-      <form className="header" onSubmit={handleSubmit} onChange={handleChange}>
+      <form className="header" onChange={handleChange}>
         <div className="form-group">
           <label htmlFor="drink">Add Drink</label>
           <input type="text" id="drink" name='drink' value={name} disabled={loading} onChange={updateDrink} />
         </div>
-        <IngredientsInput ingredients={ingredients} handleChange={handleChange} />
-        <div className="form-group">
-          <button className="btn" onClick={addIngredient} disabled={loading}>Add Ingredient</button>
-        </div>
-        <div className="form-group">
-          <button className="btn" onClick={handleSubmit} disabled={loading}>Add Drink</button>
-        </div>
+        <IngredientsForm
+          loading={loading}
+          ingredients={ingredients}
+          handleChange={handleChange}
+          addIngredient={addIngredient}
+          showIngredients={showIngredients}
+          toggleIngredients={toggleIngredients}
+        />
+        {
+          !showIngredients
+          ? <div className="form-group">
+              <button className="btn" onClick={handleSubmit} disabled={loading}>Add Drink</button>
+            </div>
+          : null
+        }
       </form>
     );
   }
