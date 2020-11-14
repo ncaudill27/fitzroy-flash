@@ -1,6 +1,6 @@
 import React from 'react';
 
-function IngredientsInput({ingredients, handleChange, showIngredients}) {
+function IngredientsInput({ingredients, handleIngredientChange, showIngredients}) {
 
   if (!showIngredients) return null;
   return ingredients.map( (ingredient, idx) => {
@@ -19,7 +19,7 @@ function IngredientsInput({ingredients, handleChange, showIngredients}) {
             id={nameId}
             value={ingredient.name}
             className='name'
-            onChange={handleChange}
+            onChange={handleIngredientChange}
           />
           <label htmlFor={amountId}>Amount</label>
           <input
@@ -31,7 +31,7 @@ function IngredientsInput({ingredients, handleChange, showIngredients}) {
             className='amount'
             step='0.25'
             min='0.25'
-            onChange={handleChange}
+            onChange={handleIngredientChange}
           />
           <label htmlFor={unitId}>Unit</label>
           <input
@@ -41,7 +41,7 @@ function IngredientsInput({ingredients, handleChange, showIngredients}) {
             id={unitId}
             value={ingredient.unit}
             className='unit'
-            onChange={handleChange}
+            onChange={handleIngredientChange}
           />          
         </div>
       </div>
