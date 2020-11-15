@@ -152,7 +152,11 @@ function DrinkForm() {
     createItem({variables});
     console.log(variables)
     setName('');
+    setCategory('');
+    setGarnish('');
+    setGlassware('');
     setIngredients([{name: '', amount: '1', unit: ''}]);
+    setBuild([{step: ''}]);
   }
 
   if (showForm) {

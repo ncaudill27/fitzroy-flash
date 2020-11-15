@@ -76,13 +76,16 @@ body {
 }
 
 .card .front {
-  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
 }
 
 .card .front,
 .card .back {
   position: absolute;
-  padding: 1rem;
+  padding: 1.25rem 1rem;
   backface-visibility: hidden;
 }
 
@@ -99,7 +102,7 @@ body {
 .flashcard-option {
   margin-top: .25rem;
   color: #555;
-  font-size: .75rem;
+  font-size: 0.85rem;
 }
 
 .flashcard-option:first-child {
