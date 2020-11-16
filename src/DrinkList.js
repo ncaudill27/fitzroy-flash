@@ -34,8 +34,7 @@ const DRINKS_QUERY = gql`
     const { data, loading, error } = useQuery(DRINKS_QUERY);
 
     useEffect( () => {
-      console.log(data, loading)
-      console.log('Err: ', error)
+      if (error) console.log('Err: ', error);
       if ( data && !loading) setDrinks(data.allDrinks.data);
     }, [data, loading, error]);
     
