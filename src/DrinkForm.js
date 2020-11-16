@@ -150,7 +150,6 @@ function DrinkForm() {
     }
 
     createItem({variables});
-    console.log(variables)
     setName('');
     setCategory('');
     setGarnish('');
