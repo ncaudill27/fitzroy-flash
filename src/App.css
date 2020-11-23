@@ -69,9 +69,11 @@ h3 {
   box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.7);
   background-color: #e8e8e8;
   transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
   transition: 150ms;
   cursor: pointer;
   transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
+  -webkit-transform: perspective(1000px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
 }
 
 .card:hover {
@@ -90,10 +92,6 @@ h3 {
 .card .front,
 .card .back {
   position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   font-size: 2rem;
   padding: 1.25rem 1rem;
   backface-visibility: hidden;
@@ -101,6 +99,7 @@ h3 {
 
 .card .back {
   transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
   display: flex;
   justify-content: space-between;
 }
