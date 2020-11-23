@@ -94,6 +94,13 @@ h3 {
   position: absolute;
   font-size: 2rem;
   padding: 1.25rem 1rem;
+  color: white;
+  -webkit-perspective: 0;
+  perspective: 0;
+  -webkit-backface-visibility: hidden;
+  -webkit-transform: translate3d(0,0,0);
+  transform: translate3d(0,0,0);
+  visibility: visible;
   backface-visibility: hidden;
 }
 
