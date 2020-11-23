@@ -82,7 +82,7 @@ h3 {
 
 .card .front,
 .card .back {
-  position: absolute;
+  /* position: absolute; */
   font-size: 2rem;
   padding: 1.25rem 1rem;
   color: black;
