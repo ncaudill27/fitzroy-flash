@@ -30,15 +30,13 @@ function BuildSteps({steps}) {
 }
 
 export default function Flashcard({
-  flashcard: {
     name,
     category,
     ingredients,
     build,
     garnish,
     glassware
-  }
-}) {
+  }) {
   const [flip, setFlip] = useState(false)
   const [height, setHeight] = useState('initial')
 
