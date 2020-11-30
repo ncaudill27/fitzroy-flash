@@ -63,7 +63,7 @@ export default function Flashcard({
       onClick={() => setFlip(!flip)}
     >
       <div className="front" ref={frontEl}>
-        {name}
+        <div style={{width: 'fit-content'}}>{name}</div>
       </div>
       <div className="back" ref={backEl}>
         <DrinkIngredients ingredients={ingredients} garnish={garnish} />
