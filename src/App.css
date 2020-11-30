@@ -97,6 +97,7 @@ h3 {
   -webkit-transform: rotateY(180deg);
   display: flex;
   justify-content: space-between;
+  z-index: 1;
 }
 
 .flashcard-option {
