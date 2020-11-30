@@ -98,7 +98,7 @@ h3 {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  z-index: 1;
+  position: absolute;
 }
 
 .flashcard-option {
